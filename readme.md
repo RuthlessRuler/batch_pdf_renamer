@@ -18,7 +18,7 @@ A nice feature is the file 'restorelog.txt': if you use a Unix system and you do
 You can also try a dry-run before actually using it (argument --dry-run).
 ## Dependencies
 1. PyPDF2
-2. isbnlib
+2. isbnlib (v3.8.2)
 
 *PyPDF2* is used to get the text from the first 10 pages of your pdf.
 
