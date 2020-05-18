@@ -54,12 +54,11 @@ def get_metadata_from_file(x):
 def clear_string(x):
     """Manipulates the author string."""
     # allow only a small subset of common characters
-    x = unidecode(x).lower()
+    #x = unidecode(x)
     # clears the double _ _
-    x = re.sub('[^a-z0-9_]+', '_', x)
+    x = re.sub("[^a-zA-Z_0-9_ :\'\.\-\!\&\?\,\#\+\=\%\$]+", '_', x)
     # removes the _ at the end of string
-    x = re.sub('_\Z', '', x)
-    return(x.lower())
+    return(x)
 
 def check_valid_isbn(x):
     """Check if it is a ISBN. Returns the isbn if it is valid. None otherwise.
@@ -95,7 +94,7 @@ def get_isbn_from_file(x):
 def get_metadata_from_valid_isbn(isbn):
     """ """
     metadata = None
-    servers = ('wcat', 'goob', 'openl', 'merge')
+    servers = ('wcat', 'goob', 'openl', 'thingl', 'merge')
     for server in servers:
         try:
             metadata = isbnlib.meta(isbn, server)
@@ -107,7 +106,7 @@ def get_metadata_from_valid_isbn(isbn):
         return None
     authors_string = ''
     for author in metadata['Authors']:
-        authors_string += author + ' '
+        authors_string += author + ', '
     return (authors_string[:-1], metadata['Title'])
 
 
